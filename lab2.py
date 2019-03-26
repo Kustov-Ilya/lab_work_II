@@ -20,7 +20,6 @@ def Train(p, eras, nu, isplot = True):
     print(f'Era:{eras} nu = {nu} p = {p}\nVector w:{np.around(w, 3)}')
     return Plot(w, p) if isplot else (w)
 
-
 def Plot(w, p):
     x = np.linspace(-4, 8, 30)
     matrix = np.array([[Function(x[i + j]) for j in range(p)] for i in range(30 - p)])
