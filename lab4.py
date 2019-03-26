@@ -1,4 +1,5 @@
 import numpy as np
+import os
 
 Function = lambda net: (1-np.exp(-net))/(1+np.exp(-net))
 
@@ -68,3 +69,5 @@ class Neuron_Net:
 if __name__ == "__main__":
     Nn = Neuron_Net([1,4], 2, [-0.2], 1, 0.001)
     Nn.Work()
+    os.system("pause")
+
