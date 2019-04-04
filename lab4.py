@@ -7,7 +7,7 @@ Deriv_func = lambda net: (1 - Function(net)**2)/2
 
 class Neuron:
     def __init__(self, number_w, nu):
-        self.w = np.zeros(number_w)
+        self.w = np.ones(number_w)
         self.nu = nu
         self.net = 0
         self.sigma = 0
