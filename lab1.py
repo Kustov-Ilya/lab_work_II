@@ -111,4 +111,3 @@ if __name__ == "__main__":
     Selection(True, False)
     #Логистическая на минимальной выборке
     Selection(True, True)
-    

@@ -9,16 +9,12 @@ class HopfieldNet:
         self.height = height 
         self.widht = widht 
         self.W = np.array([np.zeros(self.neurons) for _ in range(self.neurons)])
-        self.maxattempts = 200 
-        self.attempt = 0
 
-       
     def teach(self, shape):
         self.shapes.append(shape)
         self.W+=np.array([[shape[i] * shape[j] if j!=i else 0
                             for j in range(self.neurons)]
                             for i in range(self.neurons)])
-
 
     def recognize(self, shape):
         def sign(net):
@@ -37,3 +33,6 @@ class HopfieldNet:
                 shape[i]=y
         return ('Success' if shape in self.shapes else 'Failed', shape)
         
+    def clear(self):
+        self.shapes.clear()
+        self.W = np.array([np.zeros(self.neurons) for _ in range(self.neurons)])

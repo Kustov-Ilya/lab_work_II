@@ -10,19 +10,23 @@ def Train(p, eras, nu, isplot = True):
     array = np.linspace(-4, 4, 20)
     matrix = [[Function(array[i + j]) for j in range(p)] for i in range(20 - p)]
     w = np.zeros(p)
+    era = 0
     for _ in range(eras):
         error = 0
+        era+=1
         for i in range(len(matrix)):
             sigma = Function(array[p + i]) - np.dot(w,matrix[i])
             error += sigma ** 2
             w += [nu * sigma * k for k in matrix[i]]
         error = error ** 0.5
-    print(f'Era:{eras} nu = {nu} p = {p}\nVector w:{np.around(w, 3)}')
-    return Plot(w, p) if isplot else (w)
+        print(f'Era: {era}\nw: {", ".join([str(w_i) for w_i in np.around(w, 5)])}\n{error}')
+    print(f'Era:{eras} nu = {np.around(nu, 1)} p = {p}\nVector w:{np.around(w, 3)}')
+    return Plot(w, p) if isplot else w
 
 def Real_Plot():
     x = np.linspace(-4,4, 20)
     plt.plot(x, [Function(t) for t in x])
+    plt.show()
 
 
 def Plot(w, p):
@@ -77,9 +81,10 @@ def Test_era():
         
 
 if __name__ == "__main__":
+    Real_Plot()
     Train(6, 2000, 1)
-    #Real_Plot()
-    #Test_nu()
-    #Test_p()
-    #Test_era()
+    Train(6, 4000, 1)
+    Test_nu()
+    Test_p()
+    Test_era()
 

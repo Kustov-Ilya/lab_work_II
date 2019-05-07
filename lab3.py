@@ -18,7 +18,7 @@ def Train(selection):
     error_list = []
     OutText = ''
     while not error_list or error_list[era - 1] > 0:
-        OutText += f'Era: {era}\nw: {u}\n'
+        OutText += f'Era: {era}\nw: {np.around(u, 3)} '
         era += 1
         errors = 0
         vector_y = []
@@ -32,7 +32,7 @@ def Train(selection):
             if not sigma == 0:
                 errors += 1
                 u += [nu * sigma * fi_i for fi_i in fi]
-        OutText += f"Errors: {errors}\nVector: {''.join(vector_y)}\n{'-' * 70}\n"
+        OutText += f"Errors: {errors} Vector: {''.join(vector_y)}\n"
         error_list.append(errors)
     #test for verify neuron
     if Neuron_vector(c, u) == Real_vector():
@@ -84,5 +84,6 @@ def Selection():
                     return None
 
 if __name__ == "__main__":
+    Train([list(i) for i in itertools.product([0, 1], repeat = 4)])
     selection =  [[0, 0, 0, 1], [1, 1, 0, 0]]
     Train(selection)
